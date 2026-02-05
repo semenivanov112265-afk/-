@@ -1,0 +1,1118 @@
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Кладовая солнца | М.М. Пришвин</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Georgia', serif;
+        }
+
+        :root {
+            --primary: #1a472a;
+            --secondary: #2e6b3f;
+            --accent: #ffc107;
+            --light: #f8f9e6;
+            --dark: #0d2818;
+            --text: #2c3e2f;
+        }
+
+        body {
+            background-color: var(--light);
+            color: var(--text);
+            line-height: 1.7;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(46, 107, 63, 0.05) 0%, transparent 20%),
+                radial-gradient(circle at 90% 80%, rgba(255, 193, 7, 0.05) 0%, transparent 20%);
+            min-height: 100vh;
+            position: relative;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none" opacity="0.03"><path d="M50,0 Q75,25 50,50 Q25,75 0,50 Q25,25 50,0 Z" fill="%231a472a"/></svg>');
+            background-size: 300px;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--dark) 100%);
+            color: white;
+            padding: 3rem 0 4rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(13, 40, 24, 0.2);
+        }
+
+        .header-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.1;
+            background-image: 
+                radial-gradient(circle at 20% 30%, var(--accent) 2px, transparent 2px),
+                radial-gradient(circle at 80% 70%, var(--accent) 2px, transparent 2px);
+            background-size: 50px 50px;
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            margin-bottom: 0.5rem;
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3);
+            color: #fff;
+            letter-spacing: 1px;
+            position: relative;
+            display: inline-block;
+        }
+
+        h1::after {
+            content: "";
+            position: absolute;
+            bottom: -10px;
+            left: 25%;
+            width: 50%;
+            height: 3px;
+            background: var(--accent);
+            border-radius: 2px;
+        }
+
+        .subtitle {
+            font-size: 1.3rem;
+            opacity: 0.9;
+            font-style: italic;
+            margin-top: 1.5rem;
+            color: rgba(255, 255, 255, 0.9);
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 30px;
+        }
+
+        .author {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 2rem;
+            gap: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 20px;
+            border-radius: 15px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .author-img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid var(--accent);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            transition: transform 0.5s ease;
+        }
+
+        .author-img:hover {
+            transform: scale(1.05);
+        }
+
+        .author-info {
+            text-align: left;
+        }
+
+        .author-info h3 {
+            color: var(--accent);
+            font-size: 1.5rem;
+            margin-bottom: 5px;
+        }
+
+        .main-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-top: -30px;
+            position: relative;
+            z-index: 10;
+        }
+
+        @media (max-width: 1100px) {
+            .main-content {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .card {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(13, 40, 24, 0.1);
+            padding: 35px;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.1);
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(26, 71, 42, 0.1);
+        }
+
+        .card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 8px;
+            height: 100%;
+            background: linear-gradient(to bottom, var(--primary), var(--accent));
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(13, 40, 24, 0.15);
+        }
+
+        .card h2 {
+            color: var(--primary);
+            border-bottom: 2px solid var(--accent);
+            padding-bottom: 15px;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            font-size: 1.8rem;
+        }
+
+        .card h2 i {
+            color: var(--secondary);
+            background: rgba(46, 107, 63, 0.1);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .questions-list {
+            list-style-type: none;
+            counter-reset: question-counter;
+        }
+
+        .questions-list li {
+            counter-increment: question-counter;
+            margin-bottom: 20px;
+            padding: 20px;
+            background: linear-gradient(to right, rgba(248, 249, 230, 0.5), white);
+            border-left: 4px solid var(--secondary);
+            border-radius: 0 12px 12px 0;
+            position: relative;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .questions-list li:hover {
+            background: linear-gradient(to right, rgba(46, 107, 63, 0.05), white);
+            transform: translateX(5px);
+        }
+
+        .questions-list li::before {
+            content: counter(question-counter);
+            position: absolute;
+            left: -20px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: var(--secondary);
+            color: white;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1rem;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease;
+            background: rgba(248, 249, 230, 0.5);
+            border-radius: 10px;
+            margin-top: 10px;
+            padding: 0 15px;
+        }
+
+        .answer.show {
+            max-height: 500px;
+            padding: 15px;
+            margin-top: 15px;
+        }
+
+        .answer p {
+            color: var(--dark);
+            font-style: italic;
+            border-left: 3px solid var(--accent);
+            padding-left: 15px;
+            margin: 10px 0;
+        }
+
+        .quote {
+            font-style: italic;
+            padding: 25px;
+            background: linear-gradient(135deg, rgba(248, 249, 230, 0.8), rgba(255, 255, 255, 0.9));
+            border-radius: 15px;
+            border-left: 6px solid var(--primary);
+            margin: 25px 0;
+            color: var(--primary);
+            font-size: 1.2rem;
+            position: relative;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .quote::before {
+            content: "\201C";
+            font-size: 4rem;
+            color: var(--accent);
+            position: absolute;
+            top: -10px;
+            left: 15px;
+            opacity: 0.3;
+        }
+
+        .quote-author {
+            text-align: right;
+            margin-top: 15px;
+            font-weight: bold;
+            color: var(--secondary);
+            font-size: 1rem;
+        }
+
+        .chapters-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .chapter-card {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(26, 71, 42, 0.1);
+        }
+
+        .chapter-card::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 0;
+            height: 0;
+            border-style: solid;
+            border-width: 0 40px 40px 0;
+            border-color: transparent var(--accent) transparent transparent;
+        }
+
+        .chapter-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.12);
+        }
+
+        .chapter-title {
+            color: var(--primary);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            font-size: 1.4rem;
+        }
+
+        .chapter-number {
+            background: var(--primary);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.2rem;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        footer {
+            margin-top: 70px;
+            text-align: center;
+            padding: 30px;
+            color: var(--text);
+            background: linear-gradient(to bottom, rgba(248, 249, 230, 0.8), rgba(26, 71, 42, 0.1));
+            border-top: 1px solid rgba(26, 71, 42, 0.2);
+            position: relative;
+        }
+
+        footer::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(to right, var(--primary), var(--accent), var(--primary));
+        }
+
+        .footer-logo {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: var(--primary);
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+            letter-spacing: 2px;
+        }
+
+        .footer-logo::after {
+            content: "✦";
+            color: var(--accent);
+            margin-left: 10px;
+            animation: spin 4s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .task-box {
+            background: linear-gradient(135deg, rgba(255, 248, 225, 0.9), rgba(255, 255, 255, 0.9));
+            border: 2px dashed var(--accent);
+            border-radius: 15px;
+            padding: 25px;
+            margin-top: 30px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .task-box::before {
+            content: "";
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: repeating-linear-gradient(
+                45deg,
+                transparent,
+                transparent 10px,
+                rgba(255, 193, 7, 0.05) 10px,
+                rgba(255, 193, 7, 0.05) 20px
+            );
+            z-index: 0;
+        }
+
+        .task-title {
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            color: white;
+            padding: 15px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            margin-top: 15px;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(26, 71, 42, 0.3);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .btn::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s ease;
+            z-index: -1;
+        }
+
+        .btn:hover::before {
+            left: 100%;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(26, 71, 42, 0.4);
+        }
+
+        .nature-icon {
+            color: var(--secondary);
+            margin-right: 10px;
+            font-size: 1.2rem;
+        }
+
+        .toggle-btn {
+            background: var(--accent);
+            color: var(--dark);
+            border: none;
+            padding: 8px 15px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: bold;
+            margin-top: 10px;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .toggle-btn:hover {
+            background: #ffb300;
+            transform: scale(1.05);
+        }
+
+        .chapter-questions {
+            margin-top: 15px;
+        }
+
+        .chapter-questions p {
+            margin-bottom: 12px;
+            padding-left: 20px;
+            position: relative;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .chapter-questions p::before {
+            content: "•";
+            color: var(--accent);
+            font-size: 1.5rem;
+            position: absolute;
+            left: 0;
+            top: -2px;
+        }
+
+        .chapter-questions p:hover {
+            color: var(--primary);
+        }
+
+        .expand-all {
+            display: block;
+            margin: 30px auto;
+            background: linear-gradient(to right, var(--secondary), var(--primary));
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .expand-all:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        @media (max-width: 768px) {
+            .main-content {
+                margin-top: 0;
+            }
+            
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            .chapters-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .card {
+                padding: 25px 20px;
+            }
+        }
+
+        .floating-icon {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background: var(--primary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            cursor: pointer;
+            z-index: 100;
+            transition: all 0.3s ease;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .floating-icon:hover {
+            background: var(--secondary);
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-bg"></div>
+        <div class="container header-content">
+            <h1>Кладовая солнца</h1>
+            <p class="subtitle">Сказка-быль о детях, природе и вечной мудрости жизни, где каждое дерево и тропинка рассказывает свою историю</p>
+            <div class="author">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Mihail_Prishvin_%281910s%29.jpg/220px-Mihail_Prishvin_%281910s%29.jpg" alt="Михаил Пришвин" class="author-img">
+                <div class="author-info">
+                    <h3>Михаил Михайлович Пришвин</h3>
+                    <p>1873-1954 | Певец русской природы, философ и путешественник</p>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="main-content">
+            <div class="card">
+                <h2><i class="fas fa-book-open"></i> О повести</h2>
+                <p>"Кладовая солнца" — это философская сказка-быль, созданная Михаилом Пришвиным в победном 1945 году. История осиротевших детей, Насти и Митраши, становится притчей о вечной борьбе человека с природой и с самим собой.</p>
+                
+                <div class="quote">
+                    "И солнце, такое же вечное, как вечна жизнь, как вечна борьба за неё, само будто участвовало в их борьбе."
+                    <div class="quote-author">М.М. Пришвин</div>
+                </div>
+                
+                <p>Природа в повести — не просто декорация, а живое существо со своим характером, настроением и мудростью. Блудово болото становится для детей испытанием, учителем и, в конечном итоге, дарителем самой жизни.</p>
+                
+                <div class="task-box">
+                    <h3 class="task-title"><i class="fas fa-tasks"></i> Задание для глубокого чтения</h3>
+                    <p>Прочитать повесть М.М. Пришвина "Кладовая солнца" и составить в тетради по 6 аналитических вопросов к каждой главе.</p>
+                    <p>Фокус анализа:</p>
+                    <ul>
+                        <li><i class="fas fa-leaf nature-icon"></i> Психология героев и их эволюция</li>
+                        <li><i class="fas fa-tree nature-icon"></i> Символика природных образов</li>
+                        <li><i class="fas fa-question nature-icon"></i> Философский подтекст событий</li>
+                        <li><i class="fas fa-pen nature-icon"></i> Художественное мастерство автора</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="card">
+                <h2><i class="fas fa-graduation-cap"></i> Вопросы и ответы по главам</h2>
+                <p>Нажмите на любой вопрос, чтобы увидеть развернутый ответ:</p>
+                
+                <h3 style="margin-top: 25px; color: var(--secondary); border-bottom: 1px dashed var(--accent); padding-bottom: 10px;">Глава 1</h3>
+                <ol class="questions-list">
+                    <li onclick="toggleAnswer(this)">Почему автор называет Блудово болото "кладовой солнца"?
+                        <div class="answer">
+                            <p><strong>Ответ:</strong> Блудово болото Пришвин называет "кладовой солнца", потому что в нём накапливается энергия солнца, преобразованная в торф. Торф — это "консервированная" солнечная энергия, которую люди используют как топливо. Также это метафора мудрости природы, накопленной за тысячелетия.</p>
+                        </div>
+                    </li>
+                    <li onclick="toggleAnswer(this)">Какими качествами обладают Настя и Митраша?
+                        <div class="answer">
+                            <p><strong>Ответ:</strong> Настя ("Золотая курочка") — трудолюбивая, хозяйственная, осторожная. Митраша ("Мужичок в мешочке") — упрямый, самостоятельный, любознательный, с "золотыми руками". Оба рано повзрослели после смерти родителей, но сохранили детскую непосредственность.</p>
+                        </div>
+                    </li>
+                    <li onclick="toggleAnswer(this)">Что символизирует сосна и ель, растущие вместе?
+                        <div class="answer">
+                            <p><strong>Ответ:</strong> Сосна и ель, сросшиеся вместе — символ единства противоположностей, гармонии в различии. Также это предвестие будущего конфликта между детьми, которые подобно этим деревьям, разные по характеру, но должны найти способ "расти вместе".</p>
+                        </div>
+                    </li>
+                    <li onclick="toggleAnswer(this)">Почему дети решили отправиться за клюквой самостоятельно?
+                        <div class="answer">
+                            <p><strong>Ответ:</strong> Дети пошли за клюквой, потому что их запасы закончились, а клюква была важным источником пропитания. Это решение также стало испытанием их самостоятельности — они хотели доказать себе и соседям, что могут сами, как взрослые, добывать еду и справляться с трудностями.</p>
+                        </div>
+                    </li>
+                    <li onclick="toggleAnswer(this)">Какую роль в первой главе играет рассказ о родителях детей?
+                        <div class="answer">
+                            <p><strong>Ответ:</strong> Рассказ о родителях объясняет, откуда у детей такие характеры и навыки. От матери Настя переняла хозяйственность и заботу, а от отца Митраша унаследовал любовь к природе, охоте и "мужские" умения. Их память становится для детей внутренним компасом и источником силы.</p>
+                        </div>
+                    </li>
+                    <li onclick="toggleAnswer(this)">Какое значение имеет описание старого елика в первой главе?
+                        <div class="answer">
+                            <p><strong>Ответ:</strong> Старый ельник символизирует мудрость и вековой опыт природы. Это место, где даже в ненастье тихо и спокойно. Описание елика подготавливает читателя к мысли, что природа — не враг, а сложный, но справедливый мир, который можно понять, если относиться к нему с уважением.</p>
+                        </div>
+                    </li>
+                </ol>
+                
+                <h3 style="margin-top: 25px; color: var(--secondary); border-bottom: 1px dashed var(--accent); padding-bottom: 10px;">Глава 2</h3>
+                <ol class="questions-list">
+                    <li onclick="toggleAnswer(this)">Почему Митраша выбрал непроторенную тропинку?
+                        <div class="answer">
+                            <p><strong>Ответ:</strong> Митраша выбрал слабую тропинку из-за своего упрямства, самостоятельности и желания доказать, что он "мужичок", способный принимать решения. Также его привлек компас отца — символ мужского пути, исследования неизвестного.</p>
+                        </div>
+                    </li>
+                    <li onclick="toggleAnswer(this)">Что символизирует вражда волка и собак?
+                        <div class="answer">
+                            <p><strong>Ответ:</strong> Вражда Серого помещика (волка) с собаками символизирует извечную борьбу дикой и домашней природы, хаоса и порядка. Волк — воплощение слепой, разрушительной силы природы, а собаки (особенно Травка) — преданности и связи с человеком.</p>
+                        </div>
+                    </li>
+                    <li onclick="toggleAnswer(this)">Как меняется поведение детей, когда они попадают в лес?
+                        <div class="answer">
+                            <p><strong>Ответ:</strong> В лесу характеры детей обостряются. Настя становится ещё более осторожной и внимательной к знакомым приметам. Митраша, наоборот, проявляет азарт исследователя, его тянет к риску и неизведанному. Лес выступает как зеркало, в котором лучше видны их истинные натуры.</p>
+                        </div>
+                    </li>
+                    <li onclick="toggleAnswer(this)">Как автор описывает природу, окружающую детей? Что эти описания передают?
+                        <div class="answer">
+                            <p><strong>Ответ:</strong> Пришвин описывает природу как живое, одушевлённое существо. Солнце "играет", тропинки "зовут", ветер "шепчет". Эти олицетворения передают, что природа не безучастна к детям — она наблюдает, реагирует на их настроение и поступки, становится активным участником событий.</p>
+                        </div>
+                    </li>
+                    <li onclick="toggleAnswer(this)">Какое значение в этой главе имеет образ солнца?
+                        <div class="answer">
+                            <p><strong>Ответ:</strong> Солнце в этой главе — символ жизни, надежды и верного пути. Пока дети вместе и слышат друг друга, солнце светит ярко. Когда между ними возникает спор и разлад, солнце скрывается за тучами. Так автор показывает, что гармония с миром начинается с гармонии между людьми.</p>
+                        </div>
+                    </li>
+                    <li onclick="toggleAnswer(this)">Как проявляется самостоятельность Митраши в этой главе?
+                        <div class="answer">
+                            <p><strong>Ответ:</strong> Самостоятельность Митраши проявляется в его решительности, нежелании идти на поводу у сестры и в слепой вере в компас как в символ отцовского авторитета. Однако автор тонко показывает, что это ещё детская, незрелая самостоятельность, лишённая опыта и мудрости, которая вскоре приведёт его к беде.</p>
+                        </div>
+                    </li>
+                </ol>
+
+                <h3 style="margin-top: 25px; color: var(--secondary); border-bottom: 1px dashed var(--accent); padding-bottom: 10px;">Глава 3</h3>
+                <ol class="questions-list">
+                    <li onclick="toggleAnswer(this)">Как ведёт себя природа во время ссоры детей?
+                        <div class="answer">
+                            <p><strong>Ответ:</strong> Природа мгновенно реагирует на ссору: стихает пение птиц, солнце закрывается тучами, ветер усиливается и гудит в вершинах деревьев. Вся атмосфера леса меняется с дружелюбной на тревожную и предостерегающую, как если бы сам лес хотел остановить их разлад.</p>
+                        </div>
+                    </li>
+                    <li onclick="toggleAnswer(this)">Почему Настя сначала не замечает, что брат ушёл по другой тропе?
+                        <div class="answer">
+                            <p><strong>Ответ:</strong> Настя была полностью поглощена сбором клюквы. Алчная радость находки ("ведьмина ягода") затмила для неё всё вокруг. Этот эпизод показывает, как даже положительное качество — трудолюбие — может превратиться в жадность и заставить человека забыть о самом главном — о близком человеке.</p>
+                        </div>
+                    </li>
+                    <li onclick="toggleAnswer(this)">Какую роль в этой главе играет образ птиц и их пения?
+                        <div class="answer">
+                            <p><strong>Ответ:</strong> Птицы выступают как голос самой природы, её эмоциональный барометр. Их весёлый щебет сопровождает детей, пока они в согласии. Когда дети ссорятся, птицы умолкают. Позже, одинокий крик какой-то птицы усиливает чувство тоски и тревоги Насти, подчёркивая её оторванность от брата.</p>
+                        </div>
+                    </li>
+                    <li onclick="toggleAnswer(this)">Что символизирует Слепая елань, в которую попадает Митраша?
+                        <div class="answer">
+                            <p><strong>Ответ:</strong> Слепая елань — это символ неожиданной жизненной ловушки, опасности, которая подстерегает за самоуверенностью. Она "слепая", потому что сверху прикрыта крепким слоем мха и её не разглядеть. Так и в жизни: беда часто приходит туда, где её совсем не ждут, обманывая видимой безопасностью.</p>
+                        </div>
+                    </li>
+                    <li onclick="toggleAnswer(this)">Как меняется состояние Насти, когда она остаётся одна?
+                        <div class="answer">
+                            <p><strong>Ответ:</strong> Сначала Настя испытывает радость и азарт от обильной клюквы. Затем, когда она насыщается и приходит в себя, её охватывает тревога, а потом и настоящий страх. Радость сменяется чувством вины и осознанием своего эгоизма. Она из "Золотой курочки" превращается в испуганную девочка, которая понимает, что потеряла самое дорогое.</p>
+                        </div>
+                    </li>
+                    <li onclick="toggleAnswer(this)">Какие признаки приближающейся беды замечают дети?
+                        <div class="answer">
+                            <p><strong>Ответ:</strong> Признаки беды多层次ны: 1) <strong>Внешние:</strong> стемневшее небо, усилившийся ветер, зловещая тишина в лесу. 2) <strong>Внутренние:</strong> чувство раздражения и упрямства у Митраши, жадность и забывчивость у Насти. 3) <strong>Символические:</strong> развилка троп как точка принятия рокового решения. Природа и их собственные сердца предупреждали их, но они не прислушались.</p>
+                        </div>
+                    </li>
+                </ol>
+                
+                <h3 style="margin-top: 25px; color: var(--secondary); border-bottom: 1px dashed var(--accent); padding-bottom: 10px;">Глава 4</h3>
+                <ol class="questions-list">
+                    <li onclick="toggleAnswer(this)">Как Травка находит Митрашу и почему помогает ему?
+                        <div class="answer">
+                            <p><strong>Ответ:</strong> Травка находит Митрашу по звуку его голоса и человеческому запаху. Она помогает ему, потому что в нём видит черты своего погибшего хозяина Антипыча, а также из-за природного инстинкта защищать слабого и тоски по человеческому общению.</p>
+                        </div>
+                    </li>
+                    <li onclick="toggleAnswer(this)">Что символизирует борьба Митраши с болотной трясиной?
+                        <div class="answer">
+                            <p><strong>Ответ:</strong> Борьба с трясиной символизирует жизненные испытания, из которых можно выбраться только с помощью разума, самообладания и сохранения человеческого достоинства даже в самых отчаянных ситуациях.</p>
+                        </div>
+                    </li>
+                    <li onclick="toggleAnswer(this)">Как Настя осознаёт свою ошибку и вину перед братом?
+                        <div class="answer">
+                            <p><strong>Ответ:</strong> Настя осознаёт ошибку, когда, насытившись клюквой, оглядывается вокруг и понимает, что брата нет рядом. Её охватывает внезапный страх, и она понимает, что из-за жадности и увлечённости забыла о самом главном — о брате, который для неё дороже любой ягоды.</p>
+                        </div>
+                    </li>
+                    <li onclick="toggleAnswer(this)">Какую роль в спасении Митраши играет его смекалка и знания?
+                        <div class="answer">
+                            <p><strong>Ответ:</strong> Смекалка и знания, переданные отцом, спасают Митраше жизнь. Он вспоминает, что в трясине нельзя делать резких движений, распределяет вес тела, использует ружьё как опору — всё это показывает, как теоретические знания превращаются в практическую мудрость в критической ситуации.</p>
+                        </div>
+                    </li>
+                    <li onclick="toggleAnswer(this)">Что символизирует найденная клюква в финале главы?
+                        <div class="answer">
+                            <p><strong>Ответ:</strong> Найденная клюква символизирует не просто добычу, а награду за пройденные испытания, преодоление самих себя и обретение истинных ценностей — взаимопомощи, братской любви и единства с природой.</p>
+                        </div>
+                    </li>
+                    <li onclick="toggleAnswer(this)">Как автор показывает изменение отношений между детьми после испытания?
+                        <div class="answer">
+                            <p><strong>Ответ:</strong> После испытания дети больше не спорят и не пререкаются. Они понимают ценность друг друга, прощают взаимные обиды и действуют сообща. Их отношения переходят на новый уровень — из просто брата и сестры они становятся настоящими союзниками и друзьями, прошедшими через серьёзное испытание.</p>
+                        </div>
+                    </li>
+                </ol>
+                
+                <h3 style="margin-top: 25px; color: var(--secondary); border-bottom: 1px dashed var(--accent); padding-bottom: 10px;">Глава 5</h3>
+                <ol class="questions-list">
+                    <li onclick="toggleAnswer(this)">Как завершается история с волком в повести?
+                        <div class="answer">
+                            <p><strong>Ответ:</strong> История с волком завершается его гибелью от выстрела Митраши. Это символизирует победу разума, смелости и человеческой воли над слепой разрушительной силой природы, а также окончательное взросление Митраши как охотника и защитника.</p>
+                        </div>
+                    </li>
+                    <li onclick="toggleAnswer(this)">Что символизирует возвращение детей домой с богатой добычей?
+                        <div class="answer">
+                            <p><strong>Ответ:</strong> Возвращение с богатой добычей символизирует не просто материальное приобретение, а духовную победу — дети принесли домой не только клюкву, но и жизненный опыт, мудрость, взаимопонимание и нового верного друга — собаку Травку.</p>
+                        </div>
+                    </li>
+                    <li onclick="toggleAnswer(this)">Как изменились Настя и Митраша после своего приключения?
+                        <div class="answer">
+                            <p><strong>Ответ:</strong> Дети повзрослели и возмужали. Митраша стал менее упрямым и более рассудительным, Настя — менее жадной и более чуткой. Они научились ценить друг друга, понимать природу и осознали, что только вместе могут преодолеть любые трудности.</p>
+                        </div>
+                    </li>
+                    <li onclick="toggleAnswer(this)">Какую роль в финале играет образ Травки и Антипыча?
+                        <div class="answer">
+                            <p><strong>Ответ:</strong> Травка становится связующим звеном между поколениями — она передаёт детям мудрость Антипыча, его любовь к природе и понимание её законов. Через Травку продолжается связь времен и традиций, что подчёркивает идею преемственности и вечности жизни.</p>
+                        </div>
+                    </li>
+                    <li onclick="toggleAnswer(this)">Как автор показывает единение детей с природой в конце повести?
+                        <div class="answer">
+                            <p><strong>Ответ:</strong> В финале дети не противостоят природе, а живут в гармонии с ней. Они понимают её язык, уважают её законы и извлекают из неё не только материальные блага (клюкву, торф), но и духовную мудрость. Природа становится для них не кладовой в прямом смысле, а кладовой жизненного опыта.</p>
+                        </div>
+                    </li>
+                    <li onclick="toggleAnswer(this)">В чём заключается главная мысль финала "Кладовой солнца"?
+                        <div class="answer">
+                            <p><strong>Ответ:</strong> Главная мысль финала в том, что истинное богатство — это не материальные блага, а мудрость, взаимопонимание, единство с природой и близкими людьми. "Кладовая солнца" — это не только торфяное болото, но и сама жизнь, которая даёт свои дары только тем, кто достоин их трудом, смелостью и добротой.</p>
+                        </div>
+                    </li>
+                </ol>
+                
+                <button class="btn" onclick="toggleAllAnswers()" style="width: 100%; margin-top: 20px;">
+                    <i class="fas fa-expand-alt"></i> Показать/скрыть все ответы
+                </button>
+            </div>
+        </div>
+        
+        <div class="card" style="margin-top: 40px;">
+            <h2><i class="fas fa-list-ol"></i> Полный разбор по главам</h2>
+            <div class="chapters-container">
+                <div class="chapter-card">
+                    <h3 class="chapter-title"><span class="chapter-number">1</span> Глава 1: Дети и их мир</h3>
+                    <div class="chapter-questions">
+                        <p onclick="showChapterAnswer(1,1)">1. Как смерть родителей повлияла на детей?</p>
+                        <p onclick="showChapterAnswer(1,2)">2. Почему соседи уважали детей?</p>
+                        <p onclick="showChapterAnswer(1,3)">3. Что значит "кладовая солнца" буквально?</p>
+                        <p onclick="showChapterAnswer(1,4)">4. Какой была палестинка в воспоминаниях отца?</p>
+                        <p onclick="showChapterAnswer(1,5)">5. Почему дети решили идти за клюквой?</p>
+                        <p onclick="showChapterAnswer(1,6)">6. Что символизирует ель и сосна у Лежачего камня?</p>
+                    </div>
+                    <button class="toggle-btn" onclick="toggleChapterAnswers(1)">
+                        <i class="fas fa-eye"></i> Ответы
+                    </button>
+                    <div id="chapter-1-answers" class="answer"></div>
+                </div>
+                
+                <div class="chapter-card">
+                    <h3 class="chapter-title"><span class="chapter-number">2</span> Глава 2: Вход в лес</h3>
+                    <div class="chapter-questions">
+                        <p onclick="showChapterAnswer(2,1)">1. Как меняется атмосфера в лесу?</p>
+                        <p onclick="showChapterAnswer(2,2)">2. Почему тропинки разошлись?</p>
+                        <p onclick="showChapterAnswer(2,3)">3. Что означает развилка дорог?</p>
+                        <p onclick="showChapterAnswer(2,4)">4. Кто такой Серый помещик?</p>
+                        <p onclick="showChapterAnswer(2,5)">5. Как ведёт себя природа с детьми?</p>
+                        <p onclick="showChapterAnswer(2,6)">6. Почему Митраша не послушал Настю?</p>
+                    </div>
+                    <button class="toggle-btn" onclick="toggleChapterAnswers(2)">
+                        <i class="fas fa-eye"></i> Ответы
+                    </button>
+                    <div id="chapter-2-answers" class="answer"></div>
+                </div>
+                
+                <div class="chapter-card">
+                    <h3 class="chapter-title"><span class="chapter-number">3</span> Глава 3: Испытания</h3>
+                    <div class="chapter-questions">
+                        <p onclick="showChapterAnswer(3,1)">1. Что такое Слепая елань?</p>
+                        <p onclick="showChapterAnswer(3,2)">2. Как природа реагирует на ссору?</p>
+                        <p onclick="showChapterAnswer(3,3)">3. Почему Настя не сразу поняла?</p>
+                        <p onclick="showChapterAnswer(3,4)">4. Как ведёт себя Травка?</p>
+                        <p onclick="showChapterAnswer(3,5)">5. Что чувствует Митраша в болоте?</p>
+                        <p onclick="showChapterAnswer(3,6)">6. Как меняется состояние Насти?</p>
+                    </div>
+                    <button class="toggle-btn" onclick="toggleChapterAnswers(3)">
+                        <i class="fas fa-eye"></i> Ответы
+                    </button>
+                    <div id="chapter-3-answers" class="answer"></div>
+                </div>
+                
+                <div class="chapter-card">
+                    <h3 class="chapter-title"><span class="chapter-number">4</span> Глава 4: Спасение</h3>
+                    <div class="chapter-questions">
+                        <p onclick="showChapterAnswer(4,1)">1. Как Травка нашла Митрашу?</p>
+                        <p onclick="showChapterAnswer(4,2)">2. Почему Травка помогла?</p>
+                        <p onclick="showChapterAnswer(4,3)">3. Как Митраша использовал ум?</p>
+                        <p onclick="showChapterAnswer(4,4)">4. Когда Настя поняла ошибку?</p>
+                        <p onclick="showChapterAnswer(4,5)">5. Что значит "выстрел в волка"?</p>
+                        <p onclick="showChapterAnswer(4,6)">6. Как встретились дети?</p>
+                    </div>
+                    <button class="toggle-btn" onclick="toggleChapterAnswers(4)">
+                        <i class="fas fa-eye"></i> Ответы
+                    </button>
+                    <div id="chapter-4-answers" class="answer"></div>
+                </div>
+                
+                <div class="chapter-card">
+                    <h3 class="chapter-title"><span class="chapter-number">5</span> Глава 5: Возвращение</h3>
+                    <div class="chapter-questions">
+                        <p onclick="showChapterAnswer(5,1)">1. Что принесли дети домой?</p>
+                        <p onclick="showChapterAnswer(5,2)">2. Как изменились дети?</p>
+                        <p onclick="showChapterAnswer(5,3)">3. Кому отдали клюкву?</p>
+                        <p onclick="showChapterAnswer(5,4)">4. Что стало с Травкой?</p>
+                        <p onclick="showChapterAnswer(5,5)">5. Какой урок вынесли дети?</p>
+                        <p onclick="showChapterAnswer(5,6)">6. В чём главная мысль финала?</p>
+                    </div>
+                    <button class="toggle-btn" onclick="toggleChapterAnswers(5)">
+                        <i class="fas fa-eye"></i> Ответы
+                    </button>
+                    <div id="chapter-5-answers" class="answer"></div>
+                </div>
+            </div>
+            
+            <button class="expand-all" onclick="expandAllChapters()">
+                <i class="fas fa-arrows-alt-v"></i> Раскрыть все ответы по главам
+            </button>
+        </div>
+        
+        <div class="card" style="margin-top: 40px;">
+            <h2><i class="fas fa-lightbulb"></i> Ключевые символы повести</h2>
+            <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; margin-top: 25px;">
+                <div style="background: linear-gradient(135deg, #f8f9e6, #ffffff); padding: 20px; border-radius: 12px; border-left: 5px solid var(--accent);">
+                    <h4><i class="fas fa-sun nature-icon"></i> Солнце</h4>
+                    <p>Символ жизни, энергии, мудрости. "Кладовая солнца" — место, где накапливается жизненная сила.</p>
+                </div>
+                <div style="background: linear-gradient(135deg, #f8f9e6, #ffffff); padding: 20px; border-radius: 12px; border-left: 5px solid var(--primary);">
+                    <h4><i class="fas fa-tree nature-icon"></i> Болото</h4>
+                    <p>Место испытания, опасности, но и источник жизни (торф). Символ сложности жизни.</p>
+                </div>
+                <div style="background: linear-gradient(135deg, #f8f9e6, #ffffff); padding: 20px; border-radius: 12px; border-left: 5px solid var(--secondary);">
+                    <h4><i class="fas fa-dog nature-icon"></i> Травка</h4>
+                    <p>Символ верности, связи человека и природы, мудрости животного мира.</p>
+                </div>
+                <div style="background: linear-gradient(135deg, #f8f9e6, #ffffff); padding: 20px; border-radius: 12px; border-left: 5px solid #ff9800;">
+                    <h4><i class="fas fa-compass nature-icon"></i> Компас</h4>
+                    <p>Символ мужского пути, выбора направления в жизни, наследия отца.</p>
+                </div>
+            </div>
+            
+            <div class="quote" style="margin-top: 30px;">
+                "Самая большая роскошь на земле — это роскошь человеческого общения, а в природе — роскошь жизни, разлитой повсюду."
+                <div class="quote-author">По мотивам мыслей Пришвина</div>
+            </div>
+            
+            <a href="https://ilibrary.ru/text/2153/p.1/index.html" target="_blank" class="btn" style="margin-top: 20px;">
+                <i class="fas fa-external-link-alt"></i> Читать полный текст повести
+            </a>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="footer-logo">Сайт xD</div>
+            <p>Исследование художественного мира Михаила Пришвина</p>
+            <p style="margin-top: 15px; font-size: 0.9rem; opacity: 0.8;">Природа — это вечная книга, которую нужно уметь читать</p>
+        </div>
+    </footer>
+
+    <div class="floating-icon" onclick="scrollToTop()">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+
+    <script>
+        // Данные с ответами для глав
+        const chapterAnswers = {
+            1: [
+                "После смерти родителей Настя и Митраша быстро повзрослели, научились вести хозяйство самостоятельно. Их характеры закалились, они стали ответственными, но сохранили детские черты — Настя материнскую заботу, Митраша — упрямство и любознательность.",
+                "Соседи уважали детей за их трудолюбие, самостоятельность и умение вести хозяйство без взрослых. Дети не просили помощи, сами справлялись со всеми делами, что вызывало уважение в деревне.",
+                "Буквально «кладовая солнца» — это болото, где накапливается торф. Торф образуется из отмерших растений, которые в свою очередь выросли благодаря солнечной энергии. Таким образом, болото хранит в себе «законсервированную» энергию солнца.",
+                "В воспоминаниях отца палестинка — это чудесное место, полное спелой клюквы. Но найти её сложно — нужно знать особые приметы. Этот образ становится символом недостижимой мечты, цели, к которой стоит стремиться.",
+                "Дети пошли за клюквой, потому что закончились запасы, а клюква была их важным продуктом питания. Также это было испытание их самостоятельности — они хотели доказать, что могут сами добыть пропитание, как взрослые.",
+                "Ель и сосна, сросшиеся вместе у Лежачего камня, символизируют единство противоположностей, необходимость сотрудничества разных характеров. Также это предвестие будущих событий — дети, такие разные, должны будут найти общий язык, чтобы выжить."
+            ],
+            2: [
+                "Атмосфера в лесу меняется с безопасной и дружелюбной на таинственную и немного опасную. Лес перестаёт быть просто лесом — он становится живым существом, которое наблюдает за детьми, испытывает их.",
+                "Тропинки разошлись, потому что одна (более протоптанная) вела в обход опасного места, а другая (едва заметная) — напрямик. Это символизирует выбор между безопасным, но длинным путём и рискованным, но коротким.",
+                "Развилка дорог символизирует жизненный выбор, момент принятия решения, который определяет дальнейшую судьбу. Это проверка характеров детей: осторожность Насти против авантюризма Митраши.",
+                "Серый помещик — старый, хитрый волк, который пережил многих охотников. Он символизирует слепую, разрушительную силу природы, опасность, которая подстерегает человека в мире дикой природы.",
+                "Природа сначала приветливо встречает детей (пение птиц, солнечные лучи), но после их ссоры меняет настроение — становится тревожной, предупреждающей об опасности. Природа реагирует на гармонию и разлад в человеческих отношениях.",
+                "Митраша не послушал Настю из-за своего упрямства, желания доказать свою правоту и самостоятельность. Также на него повлиял компас отца — символ мужского пути, который он воспринял как руководство к действию."
+            ],
+            3: [
+                "Слепая елань — это опасное болотистое место, покрытое мхом, под которым скрывается трясина. Символически — это ловушка, испытание, ситуация, из которой трудно выбраться без помощи и мудрости.",
+                "Природа реагирует на ссору детей тревогой: стихают птицы, солнце скрывается за тучами, ветер усиливается. Природа чувствует разлад между детьми и как бы предупреждает их об опасности такого разъединения.",
+                "Настя не сразу поняла, что брат ушёл по другой тропе, потому что была увлечена сбором клюквы. Также это показывает разницу в их характерах: Митраша сосредоточен на цели (палестинке), а Настя — на процессе (сборе ягод).",
+                "Травка, собака Антипыча, ведёт себя как преданное существо, которое ищет своего хозяина. Она становится связующим звеном между миром людей и миром природы, между прошлым (Антипыч) и настоящим (дети).",
+                "В болоте Митраша сначала испытывает страх и панику, но затем вспоминает отцовские уроки, успокаивается и начинает действовать разумно. Это момент его взросления — из испуганного мальчика он превращается в рассудительного человека.",
+                "Состояние Насти меняется от радости находки клюквы к тревоге за брата, затем к страху и раскаянию. Она понимает, что была неправа в ссоре, и это понимание заставляет её повзрослеть."
+            ],
+            4: [
+                "Травка нашла Митрашу по запаху и звуку. Она услышала его голос и почуяла человеческий запах. Также её вела тоска по хозяину — в Митраше она почувствовала того, кому можно служить и кого можно защищать.",
+                "Травка помогла Митраше, потому что в нём она увидела черты своего погибшего хозяина Антипыча. Также её двигал инстинкт защиты слабого — она почувствовала, что мальчик в опасности и нуждается в помощи.",
+                "Митраша использовал ум, вспомнив отцовские уроки: не делал резких движений в трясине, распределил вес, использовал ружьё как опору. Его смекалка и знания, переданные отцом, спасли ему жизнь.",
+                "Настя поняла свою ошибку, когда собрала полную корзину клюквы и оглянулась вокруг. Внезапная тишина леса, отсутствие брата и осознание того, что она слишком увлеклась сбором, заставили её понять всю серьёзность ситуации.",
+                "Выстрел в волка символизирует победу разума над слепой силой, человеческой смекалки над животной агрессией. Это момент, когда Митраша из жертвы обстоятельств становится хозяином положения.",
+                "Дети встретились благодаря Травке, которая привела Настю к тому месту, где застрял Митраша. Их встреча — это радость воссоединения, взаимное прощение и понимание ценности друг друга."
+            ],
+            5: [
+                "Дети принесли домой не только полные корзины клюквы, но и жизненный опыт, мудрость, понимание друг друга и природы. Также они принесли Травку, которая стала их верным другом и защитником.",
+                "Дети изменились внутренне: стали более зрелыми, ответственными, научились ценить друг друга. Их характеры дополнили друг друга — упрямство Митраши смягчилось, осторожность Насти стала более разумной.",
+                "Клюкву дети отдали эвакуированным ленинградским детям. Этот поступок символизирует переход от детского эгоизма к взрослой ответственности, понимание того, что есть те, кому ещё тяжелее.",
+                "Травка осталась жить с детьми, став членом их семьи. Она символизирует связь с мудростью Антипыча, преемственность поколений и гармоничное единство человека и природы.",
+                "Главный урок, который вынесли дети: в единстве — сила, природа мудра и справедлива, нужно прислушиваться друг к другу и к голосу природы. Жизнь требует и смелости, и осторожности, и умения прощать.",
+                "Главная мысль финала: человек — часть природы, а не её хозяин. Жизнь — это кладовая солнца, из которой каждый берёт столько, сколько заслуживает трудом, мудростью и умением жить в гармонии с миром."
+            ]
+        };
+
+        // Функции для работы с ответами
+        function toggleAnswer(element) {
+            const answer = element.querySelector('.answer');
+            answer.classList.toggle('show');
+            
+            // Анимация для родительского элемента
+            if (answer.classList.contains('show')) {
+                element.style.background = 'linear-gradient(to right, rgba(46, 107, 63, 0.08), white)';
+            } else {
+                element.style.background = 'linear-gradient(to right, rgba(248, 249, 230, 0.5), white)';
+            }
+        }
+
+        function toggleAllAnswers() {
+            const answers = document.querySelectorAll('.questions-list .answer');
+            const allVisible = Array.from(answers).every(a => a.classList.contains('show'));
+            
+            answers.forEach(answer => {
+                if (allVisible) {
+                    answer.classList.remove('show');
+                    answer.parentElement.style.background = 'linear-gradient(to right, rgba(248, 249, 230, 0.5), white)';
+                } else {
+                    answer.classList.add('show');
+                    answer.parentElement.style.background = 'linear-gradient(to right, rgba(46, 107, 63, 0.08), white)';
+                }
+            });
+        }
+
+        function showChapterAnswer(chapter, question) {
+            const answerDiv = document.getElementById(`chapter-${chapter}-answers`);
+            const answerText = chapterAnswers[chapter][question-1];
+            
+            // Создаем или обновляем ответ
+            if (!answerDiv.innerHTML.includes(`Вопрос ${question}`)) {
+                answerDiv.innerHTML += `
+                    <div style="margin-bottom: 15px; padding: 15px; background: rgba(248, 249, 230, 0.7); border-radius: 10px;">
+                        <strong>Вопрос ${question}:</strong><br>
+                        ${answerText}
+                    </div>
+                `;
+            }
+            
+            // Показываем блок с ответами
+            if (!answerDiv.classList.contains('show')) {
+                answerDiv.classList.add('show');
+            }
+        }
+
+        function toggleChapterAnswers(chapter) {
+            const answerDiv = document.getElementById(`chapter-${chapter}-answers`);
+            answerDiv.classList.toggle('show');
+            
+            // Если открываем впервые и ответов нет - показываем все
+            if (answerDiv.classList.contains('show') && answerDiv.innerHTML === '') {
+                for (let i = 1; i <= 6; i++) {
+                    showChapterAnswer(chapter, i);
+                }
+            }
+        }
+
+        function expandAllChapters() {
+            for (let chapter = 1; chapter <= 5; chapter++) {
+                const answerDiv = document.getElementById(`chapter-${chapter}-answers`);
+                if (!answerDiv.classList.contains('show')) {
+                    answerDiv.classList.add('show');
+                    if (answerDiv.innerHTML === '') {
+                        for (let i = 1; i <= 6; i++) {
+                            showChapterAnswer(chapter, i);
+                        }
+                    }
+                }
+            }
+        }
+
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+
+        // Добавляем интерактивность карточкам глав
+        document.querySelectorAll('.chapter-card').forEach(card => {
+            card.addEventListener('click', function(e) {
+                // Игнорируем клики по кнопкам и вопросам
+                if (!e.target.classList.contains('toggle-btn') && 
+                    !e.target.classList.contains('chapter-questions') &&
+                    e.target.tagName !== 'P') {
+                    this.style.transform = 'scale(1.02)';
+                    setTimeout(() => {
+                        this.style.transform = '';
+                    }, 200);
+                }
+            });
+        });
+
+        // Инициализация: добавляем первые ответы для наглядности
+        document.addEventListener('DOMContentLoaded', function() {
+            // Показываем ответы на первые два вопроса первой главы
+            setTimeout(() => {
+                showChapterAnswer(1, 1);
+                showChapterAnswer(1, 2);
+                document.getElementById('chapter-1-answers').classList.add('show');
+            }, 1000);
+        });
+    </script>
+</body>
+</html>
